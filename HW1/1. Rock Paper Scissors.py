@@ -12,15 +12,13 @@ if sys.version[0] == '2':
 class RockPaperScissorsBot:
 	'''
 	Ian Mobbs - im6293 - Rock Paper Scissors Bot
-	Bot designed to play Rock Paper Scissors with
-	Tracks all moves made my player and chooses best move based on their move history
+	Rock Paper Scissors bot that tracks all moves made my player and chooses best move based on their move history
 	'''
 	def __init__(self):
 		'''
 		Initializes bot
 		Loads empty dictionary of enemy moves played
 		Stores winning moves based on enemy move
-		Starts gameplay
 		'''
 		self.opponentMoves = {
 			"Rock":0,
@@ -48,16 +46,10 @@ class RockPaperScissorsBot:
 		Given text to prompt with, returns sanitized input
 		'''
 		while True:
-			move = input(text).lower()
-			if move == "rock":
-				self.opponentMoves["Rock"] += 1
-				return "Rock"
-			elif move == "paper":
-				self.opponentMoves["Paper"] += 1
-				return "Paper"
-			elif move == "scissors":
-				self.opponentMoves["Scissors"] += 1
-				return "Scissors"
+			move = input(text).title().strip()
+			if move in ["Rock", "Paper", "Scissors"]:
+				self.opponentMoves[move] += 1
+				return move
 			elif move == "quit":
 				return False
 			else:
@@ -67,8 +59,7 @@ class RockPaperScissorsBot:
 
 	def pickMove(self):
 		'''
-		Finds most played move of other player
-		Returns best counter to that move
+		Finds most played move of other player and returns best counter to that move
 		'''
 		likelyMove = sorted(self.opponentMoves.items(), key=itemgetter(1))[::-1][0][0]
 		moveToPlay = self.winningMoves[likelyMove]
