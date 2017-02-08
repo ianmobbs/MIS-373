@@ -1,5 +1,10 @@
 # Imports
+import sys
 from operator import itemgetter
+
+# Python 2 compatibility
+if sys.version[0] == '2':
+	input = raw_input
 
 # Rock Paper Scissors Bot
 class RockPaperScissorsBot:
@@ -25,9 +30,14 @@ class RockPaperScissorsBot:
 			"Paper":"Scissors",
 			"Scissors":"Rock"
 		}
+		
+		self.gamesPlayed = 0
+		self.gamesUserWon = 0
+		
 		print("Welcome to Rock Paper Scissors bot!")
 		print("You can play by typing \"Rock\", \"Paper\", or \"Scissors\".")
 		print("You can also type \"Quit\" at any time to leave.")
+		
 		self.play()
 
 	def gameInput(self, text):
@@ -71,6 +81,7 @@ class RockPaperScissorsBot:
 		elif self.winningMoves[player] == bot:
 			return "I won!"
 		else:
+			self.gamesUserWon += 1
 			return "You win!"
 
 	def play(self):
@@ -79,14 +90,16 @@ class RockPaperScissorsBot:
 		'''
 		while True:
 			botMove = self.pickMove().title()
-			move = self.gameInput("What's your move? ").title()
+			move = self.gameInput("What's your move? ")
 			if not move:
 				break
+			self.gamesPlayed += 1
+			move = move.title()
 			winner = self.chooseWinner(move, botMove)
 			print("I chose {0}.".format(botMove.lower()))
 			print(winner)
 			print("-----")
-		
+		print("You played {0} games, and won {1} of them.".format(self.gamesPlayed, self.gamesUserWon))
 		print("Goodbye!")
 		return
 	
