@@ -50,7 +50,7 @@ class RockPaperScissorsBot:
 			if move in ["Rock", "Paper", "Scissors"]:
 				self.opponentMoves[move] += 1
 				return move
-			elif move == "quit":
+			elif move == "Quit":
 				return False
 			else:
 				print("Sorry, I didn't get that.")
@@ -82,12 +82,11 @@ class RockPaperScissorsBot:
 		Runs game until user decides to quit
 		'''
 		while True:
-			botMove = self.pickMove().title()
+			botMove = self.pickMove()
 			move = self.gameInput("What's your move? ")
 			if not move:
 				break
 			self.gamesPlayed += 1
-			move = move.title()
 			winner = self.chooseWinner(move, botMove)
 			print("I chose {0}.".format(botMove.lower()))
 			print(winner)
