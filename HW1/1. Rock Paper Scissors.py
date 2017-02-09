@@ -1,5 +1,9 @@
 # 1. Rock Paper Scissors
 
+# Imported for Python 2 compatibility
+# Must happen at beginning of file
+from  __future__ import print_function
+
 # Imports
 import sys
 from operator import itemgetter
@@ -11,7 +15,7 @@ if sys.version[0] == '2':
 # Rock Paper Scissors Bot
 class RockPaperScissorsBot:
 	'''
-	Ian Mobbs - im6293 - Rock Paper Scissors Bot
+	Student Group 7 - Rock Paper Scissors Bot
 	Rock Paper Scissors bot that tracks all moves made my player and chooses best move based on their move history
 	'''
 	def __init__(self):
@@ -20,6 +24,7 @@ class RockPaperScissorsBot:
 		Loads empty dictionary of enemy moves played
 		Stores winning moves based on enemy move
 		'''
+
 		self.opponentMoves = {
 			"Rock":0,
 			"Paper":0,
@@ -30,14 +35,14 @@ class RockPaperScissorsBot:
 			"Paper":"Scissors",
 			"Scissors":"Rock"
 		}
-		
+
 		self.gamesPlayed = 0
 		self.gamesUserWon = 0
-		
+
 		print("Welcome to Rock Paper Scissors bot!")
 		print("You can play by typing \"Rock\", \"Paper\", or \"Scissors\".")
 		print("You can also type \"Quit\" at any time to leave.")
-		
+
 		self.play()
 
 	def gameInput(self, text):
@@ -94,6 +99,6 @@ class RockPaperScissorsBot:
 		print("You played {0} games, and won {1} of them.".format(self.gamesPlayed, self.gamesUserWon))
 		print("Goodbye!")
 		return
-	
+
 if __name__ == '__main__':
 	bot = RockPaperScissorsBot()
